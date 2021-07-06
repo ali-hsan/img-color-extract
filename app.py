@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, flash, redirect
 import os
 from color_extracting import extract_dominant_colors
-import pyperclip
 from PIL import Image
 
 app = Flask(__name__)
@@ -40,11 +39,6 @@ def index():
 
     return render_template('index.html', uploaded_image='uploads/default.jpg', colors=colors)
 
-
-@app.route('/to_clipboard/<color>')
-def to_clipboard(color):
-    pyperclip.copy(f'#{color}')
-    return redirect('/')
 
 
 if __name__ == '__main__':
