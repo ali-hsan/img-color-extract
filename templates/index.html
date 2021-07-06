@@ -30,9 +30,10 @@
         <div class="col-md-6 upload-container mx-auto">
         <div class="color-range mt-3">
                   <h3 class="mb-3"><b>Extracted Colors</b></h3>
-                  {% for color in colors %}
-            <a href="{{ url_for('to_clipboard', color=color) }}"><span style="background:#{{ color }};" id="color"></span></a>
-                  {% endfor %}
+            {% for color in colors %}
+                <span style="background:#{{color}};" data-clipboard-text="#{{ color }}"></span>
+            {% endfor %}
+
               </div>
 
             <hr>
@@ -58,17 +59,21 @@
       </div>
     </div>
 
-<!-- jQuery first, then Popper.js, then Bootstrap JS, TippyJS -->
 <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://unpkg.com/tippy.js@6"></script>
     <script>
       // With the above scripts loaded, you can call `tippy()` with a CSS
       // selector and a `content` prop:
-      tippy('#color', {
+      tippy('span', {
         content: 'Click to Copy!',
       });
     </script>
 
+<!-- jQuery first, then Popper.js, then Bootstrap JS and clipboard.js -->
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script>
+    <script>
+        new ClipboardJS('span');
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
