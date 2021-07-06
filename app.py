@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, flash, redirect
 import os
 from color_extracting import extract_dominant_colors
 import pyperclip
+from PIL import Image
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
@@ -19,6 +20,11 @@ def index():
 
             try:
                 image.save(os.path.join('static/uploads/', image.filename))
+                
+                # Optimize Image Before Saving
+                picture = Image.open(f'static/uploads/{image.filename}')
+                picture.thumbnail((530, 585))
+                picture.save(f'static/uploads/{image.filename}')
             except IsADirectoryError:
                 flash('Select an Image First!')
                 return render_template('index.html', uploaded_image='uploads/default.jpg', colors=colors)
