@@ -10,7 +10,9 @@ def extract_dominant_colors(file, color_count):
         picture = Image.open(file)
     except UnidentifiedImageError:
         return 'Image Not Identified!'
-
+    
+    picture.save(file, optimize=True, quality=30)
+    
     # Optimize Image and save
     img_name = f"compressed_{file.split('/')[2]}"
 
