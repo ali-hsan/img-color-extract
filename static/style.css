@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+html, body{
+    font-family: 'Montserrat', sans-serif;
+    background: rgb(238,69,64);
+    background: linear-gradient(131deg, rgba(238,69,64,1) 0%, rgba(199,44,65,1) 20%, rgba(45,20,44,1) 100%);
+    background-attachment: fixed;
+    color: white;
+}
+
+h1{
+    font-weight: 700;
+    margin: 10px;
+}
+.img-container{
+    width: 100%;
+    height: 300px;
+    padding:0;
+    margin:0;
+}
+
+.color-range{
+    background: black;
+    margin-bottom: 30px;
+}
+.upload-container hr{
+    background: white;
+}
+.color-range{
+    text-align: center;
+}
+
+.color-range span{
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+    padding: 3px;
+    margin: 3px;
+    border-radius: 50%;
+    transition: 0.5s;
+    border: 2px white solid;
+}
+
+
+@media (min-width: 992px) {
+html, body{
+    margin-top: 20px;
+}
+.container{
+    margin-top: 3em;
+}
+    .img-container{
+    max-width: 530px;
+    height: 585px;
+}
+    .img-container img{
+    border-radius: 20px;
+    box-shadow:10px 10px 30px rgba(0,0,0,0.5);
+     object-fit: cover;
+}
+.upload-container {
+    border-radius: 20px;
+    box-shadow:10px 10px 30px rgba(0,0,0,0.5);
+}
+.color-range{
+    border-radius: 20px;
+}
+.color-range span{
+    width: 50px;
+    height: 50px;
+    cursor:pointer;
+}
+.color-range span:hover{
+    transform: scale(1.2);
+}
+ }
+
+.img-container img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.upload-container {
+    background: black;
+    padding: 20px;
+}
+.files{
+   background: #181A1B;
+   border-radius: 10px;
+}
+.files input {
+    background: #181A1B;
+    padding: 120px 0px 85px 35%;
+    text-align: center !important;
+    margin: 0;
+    border: 2px white solid;
+    border-radius: 10px;
+    opacity: 0;
+    margin-top: 20px;
+    width: 100% !important;
+}
+.files input:focus {
+    background: #181A1B;
+}
+.files{ position:relative}
+.files:after {  pointer-events: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 50px;
+    right: 0;
+    height: 56px;
+    content: "";
+    background-image: url('data:image/svg+xml, <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-upload" viewBox="0 0 16 16"> <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/> <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/></svg>');
+    display: block;
+    margin: 0 auto;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.files:before {
+
+    position: absolute;
+    bottom: 10px;
+    left: 0;  pointer-events: none;
+    width: 100%;
+    right: 0;
+    height: 57px;
+    content: "Click or drag it here. ";
+    color: white;
+    display: block;
+    margin: 0 auto;
+    font-weight: 600;
+    text-transform: capitalize;
+    text-align: center;
+}

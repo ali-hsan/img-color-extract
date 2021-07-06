@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <!-- Local CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <title>IMG COLOR EXTRACT</title>
+
+</head>
+<body>
+
+<h1 class="text-center mt-3 mb-3">IMAGE COLOR EXTRACT</h1>
+<div class="container">
+      <div class="row">
+          <div class="col-md-6 img-container">
+              <img src="{{ url_for('static', filename=uploaded_image) }}" alt="img-to-extract"/>
+
+          </div>
+
+
+
+
+        <div class="col-md-6 upload-container mx-auto">
+        <div class="color-range mt-3">
+                  <h3 class="mb-3"><b>Extracted Colors</b></h3>
+                  {% for color in colors %}
+            <a href="{{ url_for('to_clipboard', color=color) }}"><span style="background:#{{ color }};" id="color"></span></a>
+                  {% endfor %}
+              </div>
+
+            <hr>
+    <form action="/" method="POST" enctype="multipart/form-data">
+    <h3 class="text-center"><b>Use Your Image</b></h3>
+
+        <div class="form-group files">
+                <input type="file" name="image" id="image" class="form-control" onchange="this.form.submit()">
+              </div>
+
+         {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <b><div class="alert alert-warning">{{ message }}</div></b>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+    </form>
+
+        </div>
+
+
+      </div>
+    </div>
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS, TippyJS -->
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+    <script>
+      // With the above scripts loaded, you can call `tippy()` with a CSS
+      // selector and a `content` prop:
+      tippy('#color', {
+        content: 'Click to Copy!',
+      });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
