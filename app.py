@@ -35,8 +35,7 @@ def index():
     # delete the files from upload folder after every revisit to home page
     total_files = os.listdir(os.path.join('static/uploads/'))
     for file in total_files:
-        if file != 'default.jpg':
-            os.remove(os.path.join(f'static/uploads/{file}'))
+        os.remove(os.path.join(f'static/uploads/{file}'))
 
     return render_template('index.html', uploaded_image='uploads/default.jpg', colors=colors)
 
