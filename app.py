@@ -4,7 +4,7 @@ from color_extracting import extract_dominant_colors
 import pyperclip
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '//////'
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 app.config['UPLOAD_FOLDER'] = 'static/uploads/'
 app.config['ALLOWED_EXTENSIONS'] = ['png', 'jpg', 'jpeg']
 
