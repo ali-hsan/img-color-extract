@@ -12,7 +12,7 @@ app.config['ALLOWED_EXTENSIONS'] = ['png', 'jpg', 'jpeg']
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    colors = extract_dominant_colors('static/uploads/default.jpg', 10)
+    colors = extract_dominant_colors('static/uploads/default.jpg', 11)
     if request.method == "POST":
 
         if request.files:
