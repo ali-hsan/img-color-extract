@@ -12,24 +12,28 @@ app.config['ALLOWED_EXTENSIONS'] = ['png', 'jpg', 'jpeg']
 @app.route('/', methods=['GET', 'POST'])
 def index():
     colors = extract_dominant_colors('static/uploads/default.jpg', 11)
-    if request.method == "POST":
+        if request.method == "POST":
 
         if request.files:
             image = request.files["image"]
 
-            try:
-                image.save(os.path.join('static/uploads/', image.filename))
-                
-                # Optimize Image Before Saving
-                picture = Image.open(f'static/uploads/{image.filename}')
-                picture.thumbnail((530, 585))
-                picture.save(f'static/uploads/{image.filename}')
-            except IsADirectoryError:
-                flash('Select an Image First!')
-                return render_template('index.html', uploaded_image='uploads/default.jpg', colors=colors)
+            if image.filename.split('.')[1] not in ['png', 'jpg', 'jpeg']:
+                flash('Format Not Supported!')
+            else:
+                try:
+                    image.save(os.path.join('static/uploads/', image.filename))
 
-            colors = extract_dominant_colors(f'static/uploads/{image.filename}', 10)
-            return render_template('index.html', uploaded_image=f'uploads/{image.filename}', colors=colors)
+                    # Optimize Image Before Saving
+                    picture = Image.open(f'static/uploads/{image.filename}')
+                    picture.thumbnail((530, 585))
+                    picture.save(f'static/uploads/{image.filename}')
+
+                except IsADirectoryError:
+                    flash('Select an Image First!')
+                    return render_template('index.html', uploaded_image='uploads/default.jpg', colors=colors)
+
+                colors = extract_dominant_colors(f'static/uploads/{image.filename}', 10)
+                return render_template('index.html', uploaded_image=f'uploads/{image.filename}', colors=colors)
 
     # delete the files from upload folder after every revisit to home page
     total_files = os.listdir(os.path.join('static/uploads/'))
