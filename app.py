@@ -6,13 +6,12 @@ from PIL import Image
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 app.config['UPLOAD_FOLDER'] = 'static/uploads/'
-app.config['ALLOWED_EXTENSIONS'] = ['png', 'jpg', 'jpeg']
 
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     colors = extract_dominant_colors('static/uploads/default.jpg', 11)
-        if request.method == "POST":
+    if request.method == "POST":
 
         if request.files:
             image = request.files["image"]
@@ -42,7 +41,6 @@ def index():
             os.remove(os.path.join(f'static/uploads/{file}'))
 
     return render_template('index.html', uploaded_image='uploads/default.jpg', colors=colors)
-
 
 
 if __name__ == '__main__':
